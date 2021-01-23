@@ -21,6 +21,11 @@ public class PaymentServiceImpl implements PaymentService {
         return repository.save(payment);
     }
 
+    @Override
+    public Payment getPaymentByOrderId(int orderId) {
+        return repository.findByOrderId(orderId);
+    }
+
     private String getPaymentStatus() {
         //generally a 3rd party API call (Razorpay, Paypal)
         return new Random().nextBoolean()?"Success":"Failure";
