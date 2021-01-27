@@ -13,3 +13,5 @@ spring:
 
 server:
   port: 9091
+logging:
+  file: E:/personal-projects/Microservice-Softwares/microservice-elk.log

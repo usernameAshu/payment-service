@@ -1,5 +1,6 @@
 package com.poc.paymentservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.poc.paymentservice.entity.Payment;
 import com.poc.paymentservice.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,13 @@ public class PaymentController {
     private PaymentService service;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Payment doPayment(@RequestBody Payment payment) {
+    public Payment doPayment(@RequestBody Payment payment) throws JsonProcessingException {
         return service.doPayment(payment);
     }
 
     @GetMapping
-    public Payment getPaymentByOrderId(@RequestParam(name = "orderId", required =true) int orderId) {
+    public Payment getPaymentByOrderId(@RequestParam(name = "orderId", required =true) int orderId)
+            throws JsonProcessingException {
         return service.getPaymentByOrderId(orderId);
     }
 }
