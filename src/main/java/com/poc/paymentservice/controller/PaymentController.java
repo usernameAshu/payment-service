@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/payments/v1")
 public class PaymentController {
@@ -25,8 +27,13 @@ public class PaymentController {
     }
 
     @GetMapping
-    public Payment getPaymentByOrderId(@RequestParam(name = "orderId", required =true) int orderId)
+    public Payment getPaymentByOrderId(@RequestParam(name = "orderId", required = true) int orderId)
             throws JsonProcessingException {
         return service.getPaymentByOrderId(orderId);
+    }
+
+    @GetMapping("/all")
+    public List<Payment> getAllPayments() {
+        return service.getAllPayments();
     }
 }

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -37,6 +38,12 @@ public class PaymentServiceImpl implements PaymentService {
         LOGGER.info("payment-service request:getPaymentByOrderId : {}",
                 new ObjectMapper().writeValueAsString(paymentResponse));
         return paymentResponse;
+    }
+
+    @Override
+    public List<Payment> getAllPayments() {
+        LOGGER.info("payment-service request:getAllPayments : Get all payments history");
+        return repository.findAll();
     }
 
     private String getPaymentStatus() {
